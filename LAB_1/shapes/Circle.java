@@ -194,14 +194,34 @@ public class Circle
     }
     
     public void zoom(String c){
-        double valor = perimtre*0.5;
+        double valor = perimtre/2;
         if (c.equals("+")){
-            makeInvisible();
             diameter=(int)((valor+perimtre)/PI);
         } else if (c.equals("-")){
-            makeInvisible();
-            diameter=(int)((valor-perimtre)/PI);
+            diameter=(int)((perimtre-valor)/PI);
         }
-        makeVisible();
+        changeSize(diameter);
+    }
+    
+    public void jump(int times){
+        if(times > 0){
+            for(int i= 0;i<times;i++){
+                makeInvisible();
+                moveVertical(20);
+                makeVisible();
+                makeInvisible();
+                moveVertical(-20);
+                makeVisible();
+            }
+        }
+    }
+    
+    public void moveSlowlydiagolal(){
+        for(int i=0;i<10;i++){
+            makeInvisible();
+            moveHorizontal(10);
+            moveVertical(10);
+            makeVisible();
+            }
     }
 }
