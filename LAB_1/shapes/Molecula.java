@@ -10,10 +10,10 @@ public class Molecula
 {
     private String[] connectors;
     private Rectangle molecula;
-    private String[] letras = {"A+","A-","B+","B-","C+","D+","D-","E+","E-","F+","F-","G+","G-","00","**"};
+    private String[] letras = {"A+","A-","B+","B-","C+","D+","D-","E+","E-","F+","F-","G+","G-","**"};
     private Circle[] signo = new Circle[4];
     private Rectangle[] letra = new Rectangle[4];
-    private int size = 150;
+    private Integer[][] posiciones = {{125,20},};
     /**
      * Constructor for objects of class Molecula
      */
@@ -21,10 +21,12 @@ public class Molecula
     {
         String[] start ={"00","C+","B-","C+"}; 
         molecula = new Rectangle();
+        molecula.moveLeft();
         molecula.changeSize(150,150);
         molecula.changeColor("black");
         connectors = start;
         organize();
+        
     }
     
     /**
@@ -34,8 +36,10 @@ public class Molecula
     public Molecula(String []connectors){
         this.connectors = connectors;
         molecula = new Rectangle();
+        molecula.moveLeft();
         molecula.changeSize(150,150);
         organize();
+        molecula.changeColor("black");
     }
 
     /**
@@ -84,7 +88,6 @@ public class Molecula
                 letra[i].changeSize(30,30);
                 letra[i].changeColor("magenta");
                 Circle d = new Circle();
-                signo[i].changeSize(20);
                 if(connectors[i].equals("D+")){
                     d.changeColor("yellow");
                 }else{
@@ -121,7 +124,6 @@ public class Molecula
                 letra[i].changeSize(30,30);
                 letra[i].changeColor("gray");
                 Circle g = new Circle();
-                signo[i].changeSize(20);
                 if(connectors[i].equals("G+")){
                     g.changeColor("yellow");
                 }else{
