@@ -13,20 +13,19 @@ public class Molecula
     private String[] letras = {"A+","A-","B+","B-","C+","D+","D-","E+","E-","F+","F-","G+","G-","**"};
     private Circle[] signo = new Circle[4];
     private Rectangle[] letra = new Rectangle[4];
-    private Integer[][] posiciones = {{125,20},};
+    private Integer[][] posiciones = {{60,0},{120,60},{60,120},{0,60}};
+    private Integer[][] posInicial = {{70,15}};
     /**
      * Constructor for objects of class Molecula
      */
     public Molecula()
     {
-        String[] start ={"00","C+","B-","C+"}; 
+        String[] start ={"00","D+","C-","D+"}; 
         molecula = new Rectangle();
-        molecula.moveLeft();
         molecula.changeSize(150,150);
         molecula.changeColor("black");
         connectors = start;
         organize();
-        
     }
     
     /**
@@ -36,10 +35,9 @@ public class Molecula
     public Molecula(String []connectors){
         this.connectors = connectors;
         molecula = new Rectangle();
-        molecula.moveLeft();
         molecula.changeSize(150,150);
-        organize();
         molecula.changeColor("black");
+        organize();
     }
 
     /**
@@ -118,12 +116,12 @@ public class Molecula
                     f.changeColor("red");
                 }
                 signo[i] = f;
-                signo[i].changeSize(20);
             }else if(connectors[i].equals("G+") || connectors[i].equals("G-")){
                 letra[i] = new Rectangle();
                 letra[i].changeSize(30,30);
                 letra[i].changeColor("gray");
                 Circle g = new Circle();
+                signo[i].changeSize(20);
                 if(connectors[i].equals("G+")){
                     g.changeColor("yellow");
                 }else{
@@ -131,7 +129,7 @@ public class Molecula
                 }
                 signo[i] = g;
                 signo[i].changeSize(20);
-            }else if(connectors[i].equals("**") || connectors[i].equals("**")){
+            }else if(connectors[i].equals("**")){
                 letra[i] = new Rectangle();
                 letra[i].changeSize(30,30);
                 letra[i].changeColor("lightGray");
@@ -139,7 +137,7 @@ public class Molecula
                 f.changeColor("lightGray");
                 signo[i] = f;
                 signo[i].changeSize(20);
-            }else if(connectors[i].equals("00") || connectors[i].equals("00")){
+            }else if(connectors[i].equals("00")){
                 letra[i] = new Rectangle();
                 letra[i].changeSize(30,30);
                 letra[i].changeColor("white");
@@ -154,23 +152,43 @@ public class Molecula
     /**
      * Me permite obtener las conecciones de la molecula
      */
-    public String getConnector(char position) {
-        return connectors[Integer.parseInt(String.valueOf(position))];
+    public String getConnector(byte position) {
+        String coneccion= "";
+        if (position == 12){
+            coneccion =connectors[0];
+        }else if(position == 3){
+            coneccion =connectors[1];
+        }else if(position == 6){
+            coneccion =connectors[2];
+        }else if(position == 9){
+            coneccion =connectors[3];
+        }
+        return coneccion;
     }
     
     /**
      * Hacer visible a la molecula
      */
     public void makeVisible(){
-        int x = 10;
         molecula.makeVisible();
         for (int i=0;i<4;i++){
-            letra[i].moveHorizontal(x);
+            letra[i].moveHorizontal(posiciones[i][0]);
+            letra[i].moveVertical(posiciones[i][1]);
+            signo[i].moveHorizontal(posiciones[i][0]+5);
+            signo[i].moveVertical(posiciones[i][1]+5);
             letra[i].makeVisible();
-            signo[i].moveUp();
-            signo[i].moveHorizontal(x);
             signo[i].makeVisible();
-            x += 50;
         }
+    }
+    
+    /**
+     * Hacer invisible la molecula
+     */
+    public void makeInvisible(){
+        for (int i=0;i<4;i++){
+            letra[i].makeInvisible();
+            signo[i].makeInvisible();
+        }
+        molecula.makeInvisible();
     }
 }

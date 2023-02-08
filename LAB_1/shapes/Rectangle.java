@@ -182,12 +182,5 @@ public class Rectangle{
             canvas.erase(this);
         }
     }
-    
-    public Integer[] getPosition(){
-        Integer[] posiciones= new Integer[2];
-        posiciones[0] = xPosition;
-        posiciones[1] = yPosition;
-        return posiciones;
-    }
 }
 
