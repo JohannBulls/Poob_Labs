@@ -10,7 +10,7 @@ public class Molecula
 {
     private String[] connectors;
     private Rectangle molecula;
-    private String[] letras = {"A+","A-","B+","B-","C+","D+","D-","E+","E-","F+","F-","G+","G-","**"};
+    private String[] letras = {"A+","B+","C+","D+","E+","F+","G+","**","00","A-","B-","C-","D-","E-","F-","G-"};
     private Circle[] signo = new Circle[4];
     private Rectangle[] letra = new Rectangle[4];
     private Integer[][] posiciones = {{60,0},{120,60},{60,120},{0,60}};
@@ -20,7 +20,7 @@ public class Molecula
      */
     public Molecula()
     {
-        String[] start ={"00","D+","C-","D+"}; 
+        String[] start ={"00","C+","B-","C+"}; 
         molecula = new Rectangle();
         molecula.changeSize(150,150);
         molecula.changeColor("black");
@@ -190,5 +190,54 @@ public class Molecula
             signo[i].makeInvisible();
         }
         molecula.makeInvisible();
+    }
+    
+    /**
+     * Cambio a la siguiente letra 
+     */
+    public void change(){
+       for (int i=0;i<4;i++){
+            if(connectors[i].equals("G+")){
+                connectors[i] = letras[0];
+            }else if(connectors[i].equals("G-")){
+                connectors[i] = letras[9];
+            }else if(!connectors[i].equals("**") &&  !connectors[i].equals("00")){
+                for (int j=0;j<16;j++){
+                    if(connectors[i].equals(letras[j])){
+                        connectors[i] = letras[j+1];
+                        j=16;
+                    }
+                }
+            }
+        }
+        organize();
+        makeVisible();
+    }
+    
+    /**
+     * Refleja la molecula en vertical 
+     */
+    public void reflect(){
+       String k=connectors[0];
+        connectors[0]=connectors[2];
+       connectors[2]=k;
+        organize();
+       makeVisible();
+    }
+    
+     /**
+     * Rota la molecula hacia las manecillas del reloj
+     */
+    public void rotate(){
+        String[] rotar = new String[4];
+        for(int i =0;i<4;i++){
+            rotar[i] = connectors[i];
+        }
+        for(int i =0;i<3;i++){
+            connectors[i] = rotar[i+1];
+        }
+        connectors[0] = rotar[3];
+        organize();
+       makeVisible();
     }
 }
