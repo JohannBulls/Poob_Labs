@@ -152,7 +152,7 @@ public class Molecula
     /**
      * Me permite obtener las conecciones de la molecula
      */
-    public String getConnector(byte position) {
+    public String getConnector(int position) {
         String coneccion= "";
         if (position == 12){
             coneccion =connectors[0];
@@ -218,26 +218,23 @@ public class Molecula
      * Refleja la molecula en vertical 
      */
     public void reflect(){
-       String k=connectors[0];
+        String k=connectors[0];
         connectors[0]=connectors[2];
-       connectors[2]=k;
+        connectors[2]=k;
         organize();
-       makeVisible();
+        makeVisible();
     }
     
      /**
      * Rota la molecula hacia las manecillas del reloj
      */
     public void rotate(){
-        String[] rotar = new String[4];
-        for(int i =0;i<4;i++){
-            rotar[i] = connectors[i];
+        String k = connectors[3];
+        for(int i = 3; i>0;i--){
+            connectors[i] = connectors[i-1];
         }
-        for(int i =0;i<3;i++){
-            connectors[i] = rotar[i+1];
-        }
-        connectors[0] = rotar[3];
+        connectors[0] = k;
         organize();
-       makeVisible();
+        makeVisible();
     }
 }
