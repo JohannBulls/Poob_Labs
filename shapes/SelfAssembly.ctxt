@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=SelfAssembly
+comment0.text=\r\n\ Nos\ permite\ crear\ una\ capsula\ matriz\ de\ moleculas\ permitiendo\ unirlas\ y\ interactuar\ con\ ellas\ .\r\n\r\n\ @author\ Johann\ Amaya.\r\n\ @author\ Sebastian\ Zamora.\r\n\ @version\ 1.0.\r\n
+comment1.params=rows\ columns
+comment1.target=SelfAssembly(int,\ int)
+comment1.text=\r\n\ Me\ permite\ crear\ la\ matriz\ de\ casillas,\ por\ favor\ el\ numero\ de\ filas\ no\ sea\ mayor\ a\ 4\ y\ de\ columnas\ no\ mayor\ a\ 8.\ \r\n\ @param\ rows\ numero\ de\ filas\ de\ la\ matriz.\r\n\ @param\ columns\ numero\ de\ columnas\ de\ la\ matriz.\r\n
+numComments=2
