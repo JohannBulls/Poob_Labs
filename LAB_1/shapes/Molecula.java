@@ -117,6 +117,7 @@ public class Molecula
                     f.changeColor("red");
                 }
                 signo[i] = f;
+                signo[i].changeSize(20);
             }else if(connectors[i].equals("G+") || connectors[i].equals("G-")){
                 letra[i] = new Rectangle();
                 letra[i].changeSize(30,30);
@@ -198,7 +199,7 @@ public class Molecula
     public void change(){
         makeInvisible();
         for (int i=0;i<4;i++){
-            if(!connectors[i].equals("**") &&  !connectors[i].equals("00")){
+            if(!connectors[i].equals("**") &&  !connectors[i].equals("00") && !connectors[i].equals("G-") &&  !connectors[i].equals("G+")){
                 for (int j=0;j<16;j++){
                     if(connectors[i].equals(letras[j])){
                         connectors[i] = letras[j+1];
@@ -241,6 +242,7 @@ public class Molecula
      * Me permite mover la molecula por todas las posiciones de la matriz
      */
     public void moveTo(int f,int c){
+        makeInvisible();
         makeVisible();
         int posX = molecula.getXPosition();
         int posY = molecula.getYPosition();
