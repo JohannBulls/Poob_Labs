@@ -1,4 +1,4 @@
-
+import java.util.Random;
 /**
  * Write a description of class Molecula here.
  * 
@@ -8,23 +8,24 @@
  */
 public class Molecula
 {
-    private String[] connectors;
+    private String[] connectors = new String[4];
     private Rectangle molecula;
     private String[] letras = {"A+","B+","C+","D+","E+","F+","G+","**","00","A-","B-","C-","D-","E-","F-","G-"};
     private Circle[] signo = new Circle[4];
     private Rectangle[] letra = new Rectangle[4];
     private Integer[][] posiciones = {{60,0},{120,60},{60,120},{0,60}};
-    private Integer[][] posInicial = {{70,15}};
     /**
      * Constructor for objects of class Molecula
      */
     public Molecula()
     {
-        String[] start ={"00","C+","B-","C+"}; 
+        Random num = new Random();
+        for(int i=0;i<4;i++){
+            connectors[i] = letras[num.nextInt(15)];            
+        }
         molecula = new Rectangle();
         molecula.changeSize(150,150);
         molecula.changeColor("black");
-        connectors = start;
         organize();
     }
     
@@ -121,7 +122,6 @@ public class Molecula
                 letra[i].changeSize(30,30);
                 letra[i].changeColor("gray");
                 Circle g = new Circle();
-                signo[i].changeSize(20);
                 if(connectors[i].equals("G+")){
                     g.changeColor("yellow");
                 }else{
@@ -146,6 +146,10 @@ public class Molecula
                 signo[i] = f;
                 signo[i].changeSize(20);
             }
+            letra[i].moveHorizontal(posiciones[i][0]);
+            letra[i].moveVertical(posiciones[i][1]);
+            signo[i].moveHorizontal(posiciones[i][0]+5);
+            signo[i].moveVertical(posiciones[i][1]+5);
         }
     }
 
@@ -172,10 +176,6 @@ public class Molecula
     public void makeVisible(){
         molecula.makeVisible();
         for (int i=0;i<4;i++){
-            letra[i].moveHorizontal(posiciones[i][0]);
-            letra[i].moveVertical(posiciones[i][1]);
-            signo[i].moveHorizontal(posiciones[i][0]+5);
-            signo[i].moveVertical(posiciones[i][1]+5);
             letra[i].makeVisible();
             signo[i].makeVisible();
         }
@@ -196,12 +196,9 @@ public class Molecula
      * Cambio a la siguiente letra 
      */
     public void change(){
-       for (int i=0;i<4;i++){
-            if(connectors[i].equals("G+")){
-                connectors[i] = letras[0];
-            }else if(connectors[i].equals("G-")){
-                connectors[i] = letras[9];
-            }else if(!connectors[i].equals("**") &&  !connectors[i].equals("00")){
+        makeInvisible();
+        for (int i=0;i<4;i++){
+            if(!connectors[i].equals("**") &&  !connectors[i].equals("00")){
                 for (int j=0;j<16;j++){
                     if(connectors[i].equals(letras[j])){
                         connectors[i] = letras[j+1];
@@ -218,6 +215,7 @@ public class Molecula
      * Refleja la molecula en vertical 
      */
     public void reflect(){
+        makeInvisible();
         String k=connectors[0];
         connectors[0]=connectors[2];
         connectors[2]=k;
@@ -229,6 +227,7 @@ public class Molecula
      * Rota la molecula hacia las manecillas del reloj
      */
     public void rotate(){
+        makeInvisible();
         String k = connectors[3];
         for(int i = 3; i>0;i--){
             connectors[i] = connectors[i-1];
@@ -236,5 +235,31 @@ public class Molecula
         connectors[0] = k;
         organize();
         makeVisible();
+    }
+    
+    /**
+     * Me permite mover la molecula por todas las posiciones de la matriz
+     */
+    public void moveTo(int f,int c){
+        makeVisible();
+        int posX = molecula.getXPosition();
+        int posY = molecula.getYPosition();
+        int matrizX = posX/150;
+        int matrizY = posY/150;
+        int movement;
+        movement = c - matrizX;
+        int xMovement = movement * 150;
+        movement = f - matrizY;
+        int yMovement = movement * 150;
+        molecula.moveHorizontal(xMovement);
+        molecula.moveVertical(yMovement);
+        for(int i=0; i<4; i++){
+            letra[i].moveHorizontal(xMovement);
+            signo[i].moveHorizontal(xMovement);
+            letra[i].moveVertical(yMovement);
+            signo[i].moveVertical(yMovement);
+            posiciones[i][0] += xMovement;
+            posiciones[i][1] += yMovement;
+        }
     }
 }

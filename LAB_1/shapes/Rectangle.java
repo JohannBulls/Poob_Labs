@@ -26,8 +26,8 @@ public class Rectangle{
     public Rectangle(){
         height = 30;
         width = 40;
-        xPosition = 70;
-        yPosition = 15;
+        xPosition = 0;
+        yPosition = 0;
         color = "magenta";
         isVisible = false;
     }
@@ -181,6 +181,20 @@ public class Rectangle{
             Canvas canvas = Canvas.getCanvas();
             canvas.erase(this);
         }
+    }
+    
+    /**
+     * Let me know the xPosition of the rectangle
+     */
+    public int getXPosition(){
+        return xPosition;
+    }
+    
+    /**
+     * Let me know the yPosition of the rectangle
+     */
+    public int getYPosition(){
+        return yPosition;
     }
 }
 
