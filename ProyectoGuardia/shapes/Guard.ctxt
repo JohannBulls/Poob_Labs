@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Guard
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Guard\ here.\r\n\r\n\ @author\ Sebastian\ Zamora\r\n\ @author\ Johann\ Amaya\r\n\ @version\ 1.0\r\n
+comment1.params=
+comment1.target=Guard()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Guard\r\n
+comment2.params=x\ y
+comment2.target=void\ moveGuard(int,\ int)
+comment2.text=\r\n\ \r\n
+comment3.params=
+comment3.target=void\ makeVisible()
+comment3.text=\r\n\ Let\ me\ make\ visible\ the\ rooms\ on\ the\ Guard\r\n
+comment4.params=
+comment4.target=void\ makeInvisible()
+comment4.text=\r\n\ Let\ me\ make\ visible\ the\ rooms\ on\ the\ Guard\r\n
+numComments=5
