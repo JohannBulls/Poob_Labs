@@ -4,8 +4,9 @@ import java.util.List;
 /**
  * Write a description of class Room here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Sebastian Zamora
+ * @author Johann Amaya
+ * @version 1.0
  */
 public class Room
 {
@@ -14,14 +15,16 @@ public class Room
     private List<Wall> lines = new ArrayList<>();
     private String color;
     private Guard guardia;
-    private Sculpture escultura;
+    private int length;
+    /*private Sculpture escultura;*/
     /**
      * Constructor for objects of class Room
      */
-    public Room(String color,int[][] polygon)
+    public Room(String color,int[][] polygon,int length)
     {
         walls = polygon;
         this.color = color;
+        this.length =length;
         buildWalls(walls);
     }
 
@@ -31,13 +34,13 @@ public class Room
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void buildWalls(int[][] polygon)
+    private void buildWalls(int[][] polygon)
     {
         for(int i=1;i<polygon.length;i++){
-            Wall line = new Wall(walls[i-1][0],walls[i-1][1],walls[i][0],walls[i][1]);
+            Wall line = new Wall(walls[i-1][0],length-walls[i-1][1],walls[i][0],length-walls[i][1]);
             lines.add(line);
         }
-        Wall line = new Wall(walls[0][0],walls[0][1],walls[walls.length-1][0],walls[walls.length-1][1]);
+        Wall line = new Wall(walls[0][0],length-walls[0][1],walls[walls.length-1][0],length-walls[walls.length-1][1]);
         lines.add(line);
     }
     
@@ -51,7 +54,7 @@ public class Room
                 i.draw(color);
             }
         }
-        escultura.makeVisible();
+        /*escultura.makeVisible();*/
     }
     
     /**
@@ -64,7 +67,7 @@ public class Room
                 i.erase();
             }
         }
-        escultura.makeInvisble();
+        /*escultura.makeInvisble();*/
     }
     
     /**
@@ -73,6 +76,6 @@ public class Room
      * @param y the y's position of the sculpture.
      */
     public void displaySculpture(int x,int y){
-        escultura = new Sculpture(x,y);
+        /*escultura = new Sculpture(x,y);*/
     }
 }

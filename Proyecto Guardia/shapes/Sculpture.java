@@ -2,31 +2,43 @@
 /**
  * Write a description of class Sculpture here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Sebastian Zamora
+ * @author Johann Amaya
+ * @version 1.0
  */
 public class Sculpture
 {
-    
-
+    private Circle circle;
+    private static final String color="red";
+    private static final int size=10;
+    private int x,y;
+    private int length;
     /**
      * Constructor for objects of class Sculpture
      */
-    public Sculpture()
+    public Sculpture(String room,int x,int y,int length)
     {
-        // initialise instance variables
-        x = 0;
+         circle = new Circle();
+         circle.changeColor(color);
+         circle.changeSize(size);
+         this.x=x;
+         this.y=y;
+         this.length=length;
+         circle.moveVertical(length-y-15);
+         circle.moveHorizontal(x-20);
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Let me make visible the rooms on the Sculpture
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public void makeVisible(){
+        circle.makeVisible();
+    }
+    
+    /**
+     * Let me make visible the rooms on the Sculpture
+     */
+    public void makeInvisible(){
+        circle.makeInvisible();
     }
 }

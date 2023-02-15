@@ -1,5 +1,3 @@
- 
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -123,7 +121,7 @@ public class Canvas{
      * Set the foreground colour of the Canvas.
      * @param  newColour   the new colour for the foreground of the Canvas 
      */
-    public void setForegroundColor(String colorString){
+     public void setForegroundColor(String colorString){
         if(colorString.equals("red"))
             graphic.setColor(Color.red);
         else if(colorString.equals("black"))
@@ -138,6 +136,18 @@ public class Canvas{
             graphic.setColor(Color.magenta);
         else if(colorString.equals("white"))
             graphic.setColor(Color.white);
+        else if(colorString.equals("cyan"))
+            graphic.setColor(Color.cyan);
+        else if(colorString.equals("pink"))
+            graphic.setColor(Color.pink);
+        else if(colorString.equals("darkGray"))
+            graphic.setColor(Color.darkGray);
+        else if(colorString.equals("lightGray"))
+            graphic.setColor(Color.lightGray);
+        else if(colorString.equals("gray"))
+            graphic.setColor(Color.gray);
+        else if(colorString.equals("orange"))
+            graphic.setColor(Color.orange);
         else
             graphic.setColor(Color.black);
     }

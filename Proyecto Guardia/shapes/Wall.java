@@ -4,9 +4,9 @@ import java.awt.geom.Line2D;
 /**
  * Let me create and modify Intersections.
  * 
- * @author Daniel Rojas
  * @author Sebastian Zamora
- * @version 2.0
+ * @author Johann Amaya
+ * @version 1.0
  */
 public class Wall
 {
