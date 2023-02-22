@@ -4,11 +4,12 @@
  */
 public class Matrix{
 
-    
+    private int[][][] valores;
     /**
      * Create a new matrix. If there is an error in the data, {{{0,0}}} is assumed
      */
     public Matrix (int data[][][]) {
+        valores = data;
     }
     
     public int [] dimension(){
@@ -43,5 +44,8 @@ public class Matrix{
     public String toString () {
         return null;
     }   
- 
+    
+    public int[][][] consultar(){
+        return valores;
+    }
 }

@@ -11,6 +11,7 @@ public class ComplexMatrixCalculator{
     private TreeMap<String, Matrix> variables;
     private int[][][] inicial = {{{0,0}}};
     public ComplexMatrixCalculator(){
+        variables = new TreeMap<>();
     }
 
     //Create a new variable
@@ -19,10 +20,14 @@ public class ComplexMatrixCalculator{
     }
      
     //Assign a matrix to an existing variable
-    //matrix[i][j] := complexNumbers[i][j][0] + complexNumbers[i][j][1] i 
+    //matrix[i][j] := complexNumbers[i][j][0] + complexNumbers[i][j][1] i
+    // {{{1,2},{-3,4},{4,-5},{6,7}},{{8,9},{0,-1},{2,3},{-4,5}},{{6,-7},{8,9},{0,1},{2,3}}}
+    /**
+     * 
+     */
     public void assign(String name, int complexNumbers[][][] ){
-        Matrix x = variables.get(name);
-        x.assign();
+        Matrix x = new Matrix(complexNumbers);
+        variables.replace(name,x);
     }    
     
     //Assigns the value of an operation to a variable (matrix operations)
@@ -46,6 +51,11 @@ public class ComplexMatrixCalculator{
     //If the last operation was successful
     public boolean ok(){
         return false;
+    }
+    
+    public int[][][] consult(String name){
+        Matrix consultar = variables.get(name);
+        return consultar.consultar();
     }
 }
     
