@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Operation
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Operation\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=b\ c
+comment1.target=int[][][]\ Suma(int[][][],\ int[][][])
+comment1.text=\ public\ Operation(int[][][]\ b,\ \ char\ op,int[][][]\ c)\ {\r\n\ \ \ \ \ \ \ String\ s\ \=\ String.valueOf(op);\r\n\ \ \ \ \ \ \ if(s\=\="+"){\r\n\ \ \ \ \ \ \ \ \ \ \ \ a\=Suma(b,c);\r\n\ \ \ \ \ \ \ \ }else\ if("-"){\r\n\ \ \ \ \ \ \ \ \ \ \ \ a\=Resta(b,c);\r\n\ \ \ \ \ \ \ \ }else\ if("*"){\r\n\ \ \ \ \ \ \ \ \ \ \ \ a\=Multiplicacion(b,c);\ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ }else{\r\n\ \ \ \ \ \ \ \ \ \ \ \ JOptionPane.showMessageDialog(null,\ "Esa\ opereacion\ no\ se\ puede\ realizar");\r\n\ \ \ \ \ \ \ \ }\r\n\ \r\n\ \ \ \ }\r\n
+numComments=2

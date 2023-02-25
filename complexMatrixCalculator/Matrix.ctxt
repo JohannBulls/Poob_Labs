@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=Matrix
+comment0.text=\r\n\ @author\ ECI,\ 2023\r\n\r\n
+comment1.params=data
+comment1.target=Matrix(int[][][])
+comment1.text=\r\n\ Create\ a\ new\ matrix.\ If\ there\ is\ an\ error\ in\ the\ data,\ {{{0,0}}}\ is\ assumed\r\n
+comment2.params=
+comment2.target=int[]\ dimension()
+comment3.params=f\ c
+comment3.target=ComplexNumber\ get(int,\ int)
+comment4.params=m
+comment4.target=Matrix\ add(Matrix)
+comment5.params=rca
+comment5.target=Matrix\ add(char)
+comment5.text=\r\n\ @param\ rca\ indicates\ the\ type\ of\ the\ operation\ (r\:row,\ c\:column\ or\ a\:all)\r\n
+comment6.params=other
+comment6.target=boolean\ equals(Matrix)
+comment7.params=otra
+comment7.target=boolean\ equals(java.lang.Object)
+comment8.params=
+comment8.target=java.lang.String\ toString()
+comment9.params=
+comment9.target=int[][][]\ consultar()
+numComments=10
