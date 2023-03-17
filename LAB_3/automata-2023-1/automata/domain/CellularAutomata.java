@@ -6,7 +6,7 @@ import java.util.*;
 public class CellularAutomata{
     static private int LENGTH=30;
     private Item[][] automata;
-	
+    
     public CellularAutomata() {
         automata=new Item[LENGTH][LENGTH];
         for (int r=0;r<LENGTH;r++){
@@ -30,7 +30,8 @@ public class CellularAutomata{
     }
 
     public void someItems(){
-        new Cell(this, 5, 5);
+        Cell indiana =new Cell(this, 1,1);
+        Cell b007 = new Cell(this,2,2);
     }
     
     public void ticTac(){
