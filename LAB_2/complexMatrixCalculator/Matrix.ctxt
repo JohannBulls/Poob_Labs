@@ -20,5 +20,5 @@ comment7.target=boolean\ equals(java.lang.Object)
 comment8.params=
 comment8.target=java.lang.String\ toString()
 comment9.params=
-comment9.target=int[][][]\ consultar()
+comment9.target=void\ conjugada()
 numComments=10

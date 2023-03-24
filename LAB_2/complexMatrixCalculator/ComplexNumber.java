@@ -83,7 +83,7 @@ public class ComplexNumber{
         return real == other.real && imaginary == other.imaginary;
     }
 
-
+    
     @Override
     public boolean equals(Object obj) {
         return equals((ComplexNumber)obj);
@@ -103,5 +103,12 @@ public class ComplexNumber{
             complexNumber =""+Integer.toString(imaginary) + "i";
         }
         return complexNumber;
-        }
     }
+    
+    /**
+     * 
+     */
+    public void conjugado(){
+        imaginary = imaginary *-1;
+    }  
+}

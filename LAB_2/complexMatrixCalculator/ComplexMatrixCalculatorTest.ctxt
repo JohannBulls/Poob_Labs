@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=ComplexMatrixCalculatorTest
+comment0.text=\r\n\ La\ clase\ de\ pruebas\ de\ ComplexMatrixCalculator\r\n\r\n\ @author\ Sebastian\ Zamora.\r\n\ @author\ Johann\ Amaya.\r\n\ @version\ 1.0\r\n
+comment1.params=
+comment1.target=ComplexMatrixCalculatorTest()
+comment1.text=\r\n\ Default\ constructor\ for\ test\ class\ ComplexMatrixCalculatorTest\r\n
+comment2.params=
+comment2.target=void\ shouldCreateVariables()
+comment3.params=
+comment3.target=void\ shouldAssingTheComplexNumber()
+comment4.params=
+comment4.target=void\ shouldDoTheConjudate()
+numComments=5

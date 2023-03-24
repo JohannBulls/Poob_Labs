@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Sociable
+comment0.text=\r\n\ Let\ me\ create\ the\ Sociable\ cell\r\n\ \r\n\ @author\ Johann\ Amaya.\r\n\ @author\ Sebastian\ Zamora.\r\n\ @version\ 1.0\r\n
+comment1.params=ac\ row\ column
+comment1.target=Sociable(CellularAutomata,\ int,\ int)
+comment1.text=\r\n\ Create\ a\ new\ Sociable\ cell\ (<b>row,column</b>)\ in\ the\ automata\ <b>ac</b>.\r\n\ Every\ new\ Sociable\ cell\ is\ going\ to\ be\ alive\ in\ the\ following\ state.\r\n\ \r\n\ @param\ ac\r\n\ @param\ row\r\n\ @param\ column\r\n
+comment2.params=
+comment2.target=int\ neighbors()
+comment2.text=\r\n\ Let\ me\ know\ if\ the\ sociable\ has\ neighbors\r\n
+comment3.params=
+comment3.target=void\ decide()
+numComments=4
