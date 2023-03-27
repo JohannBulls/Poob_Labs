@@ -59,7 +59,12 @@ public class CellularAutomata {
         Cell b007 = new Cell(this, 2, 2);
         Sociable agamenon = new Sociable(this, 1, 2);
         Sociable venus = new Sociable(this, 3, 2);
-        Teleport prueba = new Teleport(this,15,15);
+        Teleport johann = new Teleport(this,15,15);
+        Teleport sebastian = new Teleport(this,29,29);
+        Cancer nueva = new Cancer(this,20,20);
+        Cancer nueva2 = new Cancer(this,0,20);
+        Heater uno = new Heater(this,0,0);
+        Heater dos = new Heater(this,29,29);
     }
 
     /**

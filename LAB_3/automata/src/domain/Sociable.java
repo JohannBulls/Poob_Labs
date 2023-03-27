@@ -53,7 +53,7 @@ public class Sociable extends Cell {
         }else{
             nextState = Agent.ALIVE;
         }
-        if(getAge()%10 == 0 && getAge()!=0){
+        if(getAge()%10 == 0 && getAge()!=0 && nextState == 'a'){
             if(column<29 && ac.getItem(row,column+1)== null){
                 Cell nueva = new Cell(ac,row,column+1);
             }

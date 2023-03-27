@@ -42,5 +42,4 @@ public abstract class Agent {
     public final boolean isAlive() {
         return (state == Agent.ALIVE);
     }
-
 }

@@ -10,9 +10,7 @@ import java.util.Random;
  */
 public class Teleport extends Cell
 {
-    // instance variables - replace the example below with your own
     private CellularAutomata ac;
-
     /**
      * Constructor for objects of class Camicase
      *

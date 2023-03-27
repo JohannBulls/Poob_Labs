@@ -1,7 +1,5 @@
 package domain;
-
 import java.awt.Color;
-
 /**
  * Information about a cell<br>
  * <b>(automata,row,column,age,state,nextState, color)</b><br>
