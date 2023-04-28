@@ -1,5 +1,6 @@
 package presentation;
 
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -7,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -18,24 +20,33 @@ import java.awt.GridLayout;
 
 public class GameGUI extends JFrame {
     private static final Dimension dimencion = Toolkit.getDefaultToolkit().getScreenSize();
-    private JPanel[][] tablero = new JPanel[7][6];
-    private CircularButton[][] botones = new CircularButton[7][6];
+    private int sizeX;
+    private int sizeY;
+    private Color Jugador1, Jugador2, colorEnJuego, colorDefecto;
+    private JPanel juego;
+    private JButton[][] botones;
     private static final int fichas = 21;
     private JMenu menu, configuracion;
     private JMenuBar barra;
     private JMenuItem salvarPartida, cargarPartida, salir, cambiarColorJ1, cambiarColorJ2, changeSize;
     private JFileChooser selecArchivo;
 
-    public GameGUI() {
+    public GameGUI(int sizeX, int sizeY, Color Jugador1, Color Jugador2) {
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
+        this.Jugador1 = Jugador1;
+        this.Jugador2 = Jugador2;
         prepareElements();
         prepareActions();
     }
 
     public void prepareElements() {
-        setSize(dimencion.width / 1.5, dimencion.height / 1.5);
+        setSize(dimencion.width, dimencion.height);
         setLocationRelativeTo(null);
         prepareElementsMenu();
+        botones = new JButton[sizeY][sizeX];
         JPanel casillas = prepareTablero();
+        colorDefecto = botones[0][0].getBackground();
         add(casillas);
     }
 
@@ -118,31 +129,69 @@ public class GameGUI extends JFrame {
     }
 
     public JPanel prepareTablero() {
-        JPanel juego = new JPanel();
-        juego.setBackground(Color.BLACK);
-        juego.setLayout(new GridLayout(7, 6));
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 6; j++) {
-                CircularButton boton = new CircularButton(null, 50, 50);
-                tablero[i][j] = new JPanel();
-                boton.setOpaque(false);
-                boton.setContentAreaFilled(false);
-                boton.setBorderPainted(true);
-                tablero[i][j].add(boton);
+        juego = new JPanel();
+        juego.setLayout(new GridLayout(sizeY, sizeX));
+        int width = dimencion.width / sizeX - 50;
+        int heigth = dimencion.height / sizeY - 50;
+        for (int i = 0; i < sizeY; i++) {
+            for (int j = 0; j < sizeX; j++) {
+                JButton boton = new JButton();
+                boton.setBackground(Color.white);
+                boton.setSize(width, heigth);
                 botones[i][j] = boton;
-                juego.add(tablero[i][j]);
+                juego.add(boton);
+                juego.validate();
+                juego.repaint();
             }
         }
         return juego;
     }
 
     public void prepareActionsTablero() {
-        for (CircularButton[] i : botones) {
-            for (CircularButton j : i) {
-                j.addActionListener(e -> click());
+        for (int i = 0; i < sizeY; i++) {
+            for (int j = 0; j < sizeX; j++) {
+                int x = i;
+                int y = j;
+                botones[i][j].addActionListener(e -> click(x, y));
             }
 
         }
+    }
+
+    private void click(int i, int j) {
+        int posY = 0;
+        boolean flag = false;
+        for (int k = sizeY - 1; k >= 0; k--) {
+            if (botones[k][j].getBackground() == colorDefecto && !flag) {
+                posY = k;
+                flag = true;
+            }
+        }
+        for (int k = 0; k < posY; k++) {
+            tick(colorEnJuego, k, j);
+            tick(colorDefecto, k, j);
+        }
+        botones[posY][j].setBackground(colorEnJuego);
+        juego.revalidate();
+        juego.repaint();
+    }
+
+    public void repaint() {
+        juego.removeAll();
+        juego.setLayout(new GridLayout(sizeY, sizeX));
+        for (JButton[] i : botones) {
+            for (JButton j : i) {
+                juego.add(j);
+                juego.revalidate();
+                juego.repaint();
+            }
+        }
+    }
+
+    public void tick(Color color, int i, int j) {
+        botones[i][j].setBackground(color);
+        juego.revalidate();
+        juego.repaint();
     }
 
 }

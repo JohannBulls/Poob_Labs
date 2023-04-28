@@ -16,7 +16,7 @@ public class CircularButton extends JButton {
 
     protected void makeCircular(Graphics g) {
         if (getModel().isArmed()) {
-            g.setColor(Color.lightGray);
+            g.setColor(Color.cyan);
         } else {
             g.setColor(getBackground());
         }
@@ -38,5 +38,11 @@ public class CircularButton extends JButton {
             shape = new Ellipse2D.Float(0, 0, getWidth(), getHeight());
         }
         return shape.contains(x, y);
+    }
+
+    @Override
+    public void setBackground(Color color) {
+        super.setBackground(color);
+        repaint();
     }
 }
