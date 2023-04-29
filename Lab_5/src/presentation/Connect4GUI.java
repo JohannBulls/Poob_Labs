@@ -1,25 +1,11 @@
 package presentation;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
+import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowListener;
 import java.io.File;
-import java.awt.event.WindowEvent;
+import javax.swing.*;
 
 public class Connect4GUI extends JDialog {
     private static final Dimension dimencion = Toolkit.getDefaultToolkit().getScreenSize();
@@ -29,11 +15,25 @@ public class Connect4GUI extends JDialog {
     private Color Jugador1 = Color.YELLOW;
     private Color Jugador2 = Color.RED;
     private JMenuBar barra;
-    private JMenuItem salvarPartida, cargarPartida, salir, cambiarColorJ1, cambiarColorJ2, changeSize;
+    private JMenuItem salvarPartida, cargarPartida, salir, cambiarColor, changeSize;
     private JFileChooser selecArchivo;
     private JButton iniciar;
     private int width = dimencion.width;
     private int height = dimencion.width;
+    private JLabel lblNewLabel_1;
+    private JLabel lblNewLabel_2;
+    private JLabel lblNewLabel_3;
+    private JLabel lblNewLabel_4;
+    private JLabel lblNewLabel_5;
+    private JLabel titulo;
+    private JLabel lblNewLabel;
+    private JLabel titulo_1;
+    private JLabel lblNewLabel_6;
+    private JLabel lblNewLabel_7;
+    private JLabel lblNewLabel_8;
+    private JLabel lblNewLabel_9;
+    private JLabel lblNewLabel_10;
+    private JLabel lblNewLabel_11;
 
     public Connect4GUI() {
         prepareElements();
@@ -42,18 +42,64 @@ public class Connect4GUI extends JDialog {
 
     public void prepareElements() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(3, 1));
+        panel.setBackground(Color.BLUE);
         setSize(dimencion.width / 2, dimencion.height / 2);
         setLocationRelativeTo(null);
         setResizable(false);
         prepareElementsMenu();
-        JLabel titulo = new JLabel("CONENCT 4");
-        titulo.setFont(new Font("Madison Street", Font.BOLD, 100));
-        iniciar = new JButton("INICIAR PARTIDA");
-        iniciar.setBounds(width / 2 - 100, height / 2, 200, 50);
+        panel.setLayout(new GridLayout(4, 4, 0, 0));
+
+        lblNewLabel_1 = new JLabel("");
+        panel.add(lblNewLabel_1);
+
+        lblNewLabel_11 = new JLabel("");
+        panel.add(lblNewLabel_11);
+
+        lblNewLabel_2 = new JLabel("");
+        panel.add(lblNewLabel_2);
+
+        lblNewLabel_10 = new JLabel("");
+        panel.add(lblNewLabel_10);
+
+        lblNewLabel_9 = new JLabel("");
+        panel.add(lblNewLabel_9);
+
+        titulo = new JLabel("CONENCT");
+        titulo.setHorizontalAlignment(SwingConstants.RIGHT);
+        titulo.setForeground(Color.WHITE);
+        titulo.setFont(new Font("Dialog", Font.BOLD, 47));
         panel.add(titulo);
+
+        titulo_1 = new JLabel("4");
+        titulo_1.setHorizontalAlignment(SwingConstants.LEFT);
+        titulo_1.setForeground(Color.RED);
+        titulo_1.setFont(new Font("Dialog", Font.BOLD, 47));
+        panel.add(titulo_1);
+
+        lblNewLabel_8 = new JLabel("");
+        panel.add(lblNewLabel_8);
+
+        lblNewLabel_7 = new JLabel("");
+        panel.add(lblNewLabel_7);
+
+        lblNewLabel_6 = new JLabel("");
+        panel.add(lblNewLabel_6);
+        iniciar = new JButton("INICIAR PARTIDA");
+        iniciar.setBounds(width/2-100,height/2,200,50);
         panel.add(iniciar);
-        add(panel);
+        
+        lblNewLabel = new JLabel("");
+        panel.add(lblNewLabel);
+        
+        lblNewLabel_3 = new JLabel("");
+        panel.add(lblNewLabel_3);
+        
+        lblNewLabel_5 = new JLabel("");
+        panel.add(lblNewLabel_5);
+        
+        lblNewLabel_4 = new JLabel("");
+        panel.add(lblNewLabel_4);
+        getContentPane().add(panel);
     }
 
     public void prepareActions() {
@@ -81,15 +127,13 @@ public class Connect4GUI extends JDialog {
         cargarPartida = new JMenuItem("Cargar Partida");
         salvarPartida = new JMenuItem("Salvar Partida");
         salir = new JMenuItem("Salir");
-        cambiarColorJ1 = new JMenuItem("Cambiar Color Jugador 1");
-        cambiarColorJ2 = new JMenuItem("Cambiar Color Jugador 2");
+        cambiarColor = new JMenuItem("Cambiar Color Fichas");
         changeSize = new JMenuItem("Cambiar Tamaño");
 
         menu.add(salvarPartida);
         menu.add(cargarPartida);
         menu.add(salir);
-        configuracion.add(cambiarColorJ1);
-        configuracion.add(cambiarColorJ2);
+        configuracion.add(cambiarColor);
         configuracion.add(changeSize);
 
         barra.add(menu);
@@ -143,7 +187,7 @@ public class Connect4GUI extends JDialog {
     }
 
     private void iniciarPartida() {
-        GameGUI juego = new GameGUI(sizeX, sizeY, Jugador1, Jugador2);
+    	prueba juego = new prueba(sizeX, sizeY, Jugador1, Jugador2);
         juego.setVisible(true);
         this.dispose();
     }

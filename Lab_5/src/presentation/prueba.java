@@ -7,7 +7,7 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import javax.swing.*;
 
-public class GameGUI extends JFrame {
+public class prueba extends JFrame {
     private static final Dimension dimencion = Toolkit.getDefaultToolkit().getScreenSize();
     private int sizeX;
     private int sizeY;
@@ -20,7 +20,7 @@ public class GameGUI extends JFrame {
     private JMenuItem salvarPartida, cargarPartida, salir;
     private JFileChooser selecArchivo;
 
-    public GameGUI(int sizeX, int sizeY, Color Jugador1, Color Jugador2) {
+    public prueba(int sizeX, int sizeY, Color Jugador1, Color Jugador2) {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.Jugador1 = Jugador1;
@@ -43,7 +43,7 @@ public class GameGUI extends JFrame {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         WindowListener Cerrar = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                int Confirmacion = JOptionPane.showConfirmDialog(rootPane, "Esta seguro que desea salir?",
+                int Confirmacion = JOptionPane.showConfirmDialog(rootPane, "¿Esta seguro que desea salir?",
                         "Salir del sistema",
                         JOptionPane.YES_NO_OPTION);
                 if (Confirmacion == JOptionPane.YES_OPTION) {
@@ -59,7 +59,7 @@ public class GameGUI extends JFrame {
     private void prepareElementsMenu() {
         barra = new JMenuBar();
         setJMenuBar(barra);
-        menu = new JMenu("MENU");
+        menu = new JMenu("MENUsss");
         cargarPartida = new JMenuItem("Cargar Partida");
         salvarPartida = new JMenuItem("Salvar Partida");
         salir = new JMenuItem("Salir");
@@ -124,7 +124,7 @@ public class GameGUI extends JFrame {
         int heigth = dimencion.height / sizeY - 50;
         for (int i = 0; i < sizeY; i++) {
             for (int j = 0; j < sizeX; j++) {
-                JButton boton = new JButton();
+                MyButton boton = new MyButton();
                 boton.setBackground(Color.white);
                 boton.setSize(width, heigth);
                 botones[i][j] = boton;
@@ -142,6 +142,7 @@ public class GameGUI extends JFrame {
                 int x = i;
                 int y = j;
                 botones[i][j].addActionListener(e -> click(x, y));
+
             }
 
         }
@@ -156,13 +157,59 @@ public class GameGUI extends JFrame {
                 flag = true;
             }
         }
+        if (flag) {
+            botones[posY][j].setBackground(colorEnJuego);
+            if (colorEnJuego == Jugador1) {
+                colorEnJuego = Jugador2;
+            } else {
+                colorEnJuego = Jugador1;
+            }
+            botones[posY][j].setEnabled(false); // deshabilitar el botón
+        }
         for (int k = 0; k < posY; k++) {
             tick(colorEnJuego, k, j);
             tick(colorDefecto, k, j);
         }
         botones[posY][j].setBackground(colorEnJuego);
+        verificarGanador();
         juego.revalidate();
         juego.repaint();
+    }
+
+    private void verificarGanador() {
+        // Verificar filas horizontales
+        for (int i = 0; i < sizeY; i++) {
+            for (int j = 0; j <= sizeX - 4; j++) {
+                if ((botones[i][j].getBackground() != colorDefecto
+                        && botones[i][j].getBackground() == botones[i][j + 1].getBackground()
+                        && botones[i][j].getBackground() == botones[i][j + 2].getBackground()
+                        && botones[i][j].getBackground() == botones[i][j + 3].getBackground())
+                        || (botones[i][j].getBackground() != colorDefecto
+                                && botones[i][j].getBackground() == botones[i][j - 1].getBackground()
+                                && botones[i][j].getBackground() == botones[i][j - 2].getBackground()
+                                && botones[i][j].getBackground() == botones[i][j - 3].getBackground())
+                        || (botones[i][j].getBackground() != colorDefecto
+                                && botones[i][j].getBackground() == botones[i + 1][j - 1].getBackground()
+                                && botones[i][j].getBackground() == botones[i + 2][j - 2].getBackground()
+                                && botones[i][j].getBackground() == botones[i + 3][j - 3].getBackground())
+                        || (botones[i][j].getBackground() != colorDefecto
+                                && botones[i][j].getBackground() == botones[i - 1][j - 1].getBackground()
+                                && botones[i][j].getBackground() == botones[i - 2][j - 2].getBackground()
+                                && botones[i][j].getBackground() == botones[i - 3][j - 3].getBackground())
+                        || (botones[i][j].getBackground() != colorDefecto
+                                && botones[i][j].getBackground() == botones[i + 1][j + 1].getBackground()
+                                && botones[i][j].getBackground() == botones[i + 2][j + 2].getBackground()
+                                && botones[i][j].getBackground() == botones[i + 3][j + 3].getBackground())
+                        || (botones[i][j].getBackground() != colorDefecto
+                                && botones[i][j].getBackground() == botones[i - 1][j + 1].getBackground()
+                                && botones[i][j].getBackground() == botones[i - 2][j + 2].getBackground()
+                                && botones[i][j].getBackground() == botones[i - 3][j + 3].getBackground())) {
+                                    JOptionPane.showMessageDialog(this,
+                                    "¡Ganador! El color ganador es " + botones[i][j].getBackground().toString());
+                }
+            }
+        }
+
     }
 
     public void repaint() {
