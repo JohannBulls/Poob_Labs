@@ -7,6 +7,8 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import javax.swing.*;
 
+import domain.Connect4Exception;
+
 public class Connect4GUI extends JDialog {
     private static final Dimension dimencion = Toolkit.getDefaultToolkit().getScreenSize();
     private JMenu menu, configuracion;
@@ -85,18 +87,18 @@ public class Connect4GUI extends JDialog {
         lblNewLabel_6 = new JLabel("");
         panel.add(lblNewLabel_6);
         iniciar = new JButton("INICIAR PARTIDA");
-        iniciar.setBounds(width/2-100,height/2,200,50);
+        iniciar.setBounds(width / 2 - 100, height / 2, 200, 50);
         panel.add(iniciar);
-        
+
         lblNewLabel = new JLabel("");
         panel.add(lblNewLabel);
-        
+
         lblNewLabel_3 = new JLabel("");
         panel.add(lblNewLabel_3);
-        
+
         lblNewLabel_5 = new JLabel("");
         panel.add(lblNewLabel_5);
-        
+
         lblNewLabel_4 = new JLabel("");
         panel.add(lblNewLabel_4);
         getContentPane().add(panel);
@@ -141,10 +143,27 @@ public class Connect4GUI extends JDialog {
 
     }
 
+    /**
+     * Configure the menu's actions.
+     */
     private void prepareActionsMenu() {
         salir.addActionListener(e -> exit());
         cargarPartida.addActionListener(e -> cargarPartida());
         salvarPartida.addActionListener(e -> guardarPartida());
+        cambiarColor.addActionListener(e -> {
+            try {
+                cambiarColor();
+            } catch (Connect4Exception e1) {
+                JOptionPane.showMessageDialog(rootPane, e1.getMessage());
+            }
+        });
+        changeSize.addActionListener(e -> {
+            try {
+                changeSize();
+            } catch (NumberFormatException e1) {
+                JOptionPane.showMessageDialog(rootPane, Connect4Exception.BAD_INPUT);
+            }
+        });
     }
 
     /**
@@ -187,9 +206,40 @@ public class Connect4GUI extends JDialog {
     }
 
     private void iniciarPartida() {
-    	prueba juego = new prueba(sizeX, sizeY, Jugador1, Jugador2);
+        GameGUI juego = new GameGUI(sizeX, sizeY, Jugador1, Jugador2);
         juego.setVisible(true);
         this.dispose();
+    }
+
+    /**
+     * Me permite cambiar el color al jugador seleccionado.
+     * 
+     * @param jugador El boton del jugador seleccionado
+     */
+    public void cambiarColor() throws Connect4Exception {
+        String jugador = JOptionPane.showInputDialog(rootPane, "Seleccione el Jugador al que le va cambiar el color",
+                "Seleccione Jugador", DISPOSE_ON_CLOSE);
+        Color colorJugador = JColorChooser.showDialog(this, "Escoja un color", Color.BLACK);
+        if (colorJugador != null) {
+            if (jugador.equals("Jugador1")) {
+                if (Jugador2.equals(colorJugador)) {
+                    throw new Connect4Exception(Connect4Exception.SAME_COLOR);
+                }
+                Jugador1 = colorJugador;
+            } else {
+                Jugador2 = colorJugador;
+            }
+        }
+    }
+
+    /**
+     * Change the sizeX and sizeY for values that introduce the user
+     */
+    public void changeSize() {
+        sizeX = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Introduce el numero de columnas", "Tamaño",
+                JOptionPane.INFORMATION_MESSAGE));
+        sizeY = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Introduce el numero de filas", "Tamaño",
+                JOptionPane.INFORMATION_MESSAGE));
     }
 
     public static void main(String[] args) {

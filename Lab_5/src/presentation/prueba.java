@@ -212,18 +212,6 @@ public class prueba extends JFrame {
 
     }
 
-    public void repaint() {
-        juego.removeAll();
-        juego.setLayout(new GridLayout(sizeY, sizeX));
-        for (JButton[] i : botones) {
-            for (JButton j : i) {
-                juego.add(j);
-                juego.revalidate();
-                juego.repaint();
-            }
-        }
-    }
-
     public void tick(Color color, int i, int j) {
         botones[i][j].setBackground(color);
         juego.revalidate();

@@ -2,9 +2,10 @@ package domain;
 
 import java.awt.Color;
 
+import javax.swing.JButton;
+
 public class Player {
 
-    private static boolean turn = false;
     private Color color;
 
     /**
@@ -25,20 +26,8 @@ public class Player {
         return color;
     }
 
-    /**
-     * Return if the player is in turn or not.
-     * 
-     * @return the player's state.
-     */
-    public boolean getTurn() {
-        return turn;
-    }
+    public void win(JButton[][] botones) {
 
-    /**
-     * Change the player's state
-     */
-    public void changeTurn() {
-        turn = !turn;
     }
 
 }
