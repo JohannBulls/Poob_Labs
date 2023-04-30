@@ -215,15 +215,37 @@ public class GameGUI extends JFrame {
     }
 
     /**
-     * Let me chage the turn between the two players.
+     * Let me change the turn between the two players.
      */
     private void changeTurn() {
         if (Jugador1.getColor() == colorEnJuego) {
             colorEnJuego = Jugador2.getColor();
-            Jugador1.win(botones);
+            try {
+				Jugador1.win(botones);
+			} catch (Connect4Exception e) {
+				if (JOptionPane.showConfirmDialog(rootPane, e.getMessage() + " Jugador 1, ¿Quieres seguir jugando?","!GANADOR!",
+		                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+		           GameGUI pantalla = new GameGUI(sizeX, sizeY, Jugador1.getColor(), Jugador2.getColor());
+		           juego.setVisible(true);
+		           this.dispose();;
+		        }else {
+		        	System.exit(0);
+		        }
+			}
         } else {
             colorEnJuego = Jugador1.getColor();
-            Jugador2.win(botones);
+            try {
+				Jugador2.win(botones);
+			} catch (Connect4Exception e) {
+				if (JOptionPane.showConfirmDialog(rootPane, e.getMessage() + " Jugador 2, ¿Quieres seguir jugando?","!GANADOR!",
+		                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+		           GameGUI pantalla = new GameGUI(sizeX, sizeY, Jugador1.getColor(), Jugador2.getColor());
+		           juego.setVisible(true);
+		           this.dispose();;
+		        }else {
+		        	System.exit(0);
+		        }
+			}
         }
     }
 }
