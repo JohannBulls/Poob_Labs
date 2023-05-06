@@ -29,6 +29,7 @@ public class Player {
     /**
      * Let me verify if I win.
      * @param botones the JButton's matrix
+     * @throws Connect4Exception if the player win
      */
     public void win(JButton[][] botones)throws Connect4Exception {
     	for(int i = 0; i< botones.length;i++) {
@@ -84,7 +85,6 @@ public class Player {
             }
         }
         else if(j-3 > 0){
-        	System.out.println("("+i+","+j+")");
             if(matriz[i][j-1].getBackground() == color && matriz[i][j-2].getBackground() == color && matriz[i][j-3].getBackground() == color) {
             	win = true;
             }
@@ -107,7 +107,6 @@ public class Player {
     private boolean verifyDiagonals(JButton[][] matriz,int i,int j) {
     	boolean win = false;
     	if(j-3 > 0 && i+3 < matriz.length){
-        	System.out.println("("+i+","+j+")");
             if(matriz[i+1][j-1].getBackground() == color && matriz[i+2][j-2].getBackground() == color && matriz[i+3][j-3].getBackground() == color) {
             	win = true;
             }
