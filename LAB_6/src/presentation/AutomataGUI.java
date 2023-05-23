@@ -15,7 +15,7 @@ public class AutomataGUI extends JFrame {
     private JPanel panelControl;
     private PhotoAutomata photo;
     private JMenu menu;
-    private JMenuItem open,save,inport,export,iniciar,exit;
+    private JMenuItem open, save, inport, export, iniciar, exit;
     private JMenuBar barra;
     private JFileChooser selecArchivo;
     private CellularAutomata automata;
@@ -52,7 +52,7 @@ public class AutomataGUI extends JFrame {
 
     }
 
-    private void prepareElementsMenu(){
+    private void prepareElementsMenu() {
         menu = new JMenu("Menu");
         open = new JMenuItem("Open");
         save = new JMenuItem("Save");
@@ -60,7 +60,6 @@ public class AutomataGUI extends JFrame {
         export = new JMenuItem("Export");
         iniciar = new JMenuItem("New");
         exit = new JMenuItem("Exit");
-
 
         menu.add(iniciar);
         menu.add(new JSeparator());
@@ -85,7 +84,7 @@ public class AutomataGUI extends JFrame {
         return automata;
     }
 
-    private void prepareActionsMenu(){
+    private void prepareActionsMenu() {
         iniciar.addActionListener(e -> optionNew());
         open.addActionListener(e -> optionOpen());
         save.addActionListener(e -> optionSave());
@@ -97,8 +96,9 @@ public class AutomataGUI extends JFrame {
     /**
      * Let me create a new Automata as Object.
      */
-    private void optionNew(){
-        if (JOptionPane.showConfirmDialog(rootPane, "Esta seguro que desea iniciar uno nuevo desde 0?", "Iniciar Nuevo Automata",
+    private void optionNew() {
+        if (JOptionPane.showConfirmDialog(rootPane, "Esta seguro que desea iniciar uno nuevo desde 0?",
+                "Iniciar Nuevo Automata",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             AutomataGUI nueva = new AutomataGUI();
             nueva.setVisible(true);
@@ -109,9 +109,9 @@ public class AutomataGUI extends JFrame {
     /**
      * Let me open an automata that it's save in the computer as an Object.
      */
-    private void optionOpen(){
+    private void optionOpen() {
         int archivo = selecArchivo.showOpenDialog(open);
-        if(archivo == JFileChooser.APPROVE_OPTION){
+        if (archivo == JFileChooser.APPROVE_OPTION) {
             File doc = selecArchivo.getSelectedFile();
             try {
                 automata.open(doc);
@@ -124,9 +124,9 @@ public class AutomataGUI extends JFrame {
     /**
      * Let me save an Automata on the computer as an Object.
      */
-    private void optionSave(){
+    private void optionSave() {
         int archivo = selecArchivo.showOpenDialog(save);
-        if(archivo == JFileChooser.APPROVE_OPTION){
+        if (archivo == JFileChooser.APPROVE_OPTION) {
             File doc = selecArchivo.getSelectedFile();
             try {
                 automata.save(doc);
@@ -136,13 +136,12 @@ public class AutomataGUI extends JFrame {
         }
     }
 
-    
     /**
      * Let me open an Automata on the computer as plain Text.
      */
-    private void optionImport(){
+    private void optionImport() {
         int archivo = selecArchivo.showOpenDialog(inport);
-        if(archivo == JFileChooser.APPROVE_OPTION){
+        if (archivo == JFileChooser.APPROVE_OPTION) {
             File doc = selecArchivo.getSelectedFile();
             try {
                 automata.importar(doc);
@@ -155,9 +154,9 @@ public class AutomataGUI extends JFrame {
     /**
      * Let me save an Automata on the computer as plain Text.
      */
-    private void optionExport(){
+    private void optionExport() {
         int archivo = selecArchivo.showOpenDialog(export);
-        if(archivo == JFileChooser.APPROVE_OPTION){
+        if (archivo == JFileChooser.APPROVE_OPTION) {
             File doc = selecArchivo.getSelectedFile();
             try {
                 automata.export(doc);
@@ -170,7 +169,7 @@ public class AutomataGUI extends JFrame {
     /**
      * Let me close the automata
      */
-    private void optionExit(){
+    private void optionExit() {
         if (JOptionPane.showConfirmDialog(rootPane, "Esta seguro que desea salir?", "Salir del sistema",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             System.exit(0);

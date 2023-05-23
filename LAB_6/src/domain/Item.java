@@ -4,6 +4,7 @@ import java.awt.Color;
 
 /**
  * The interface that let me create the figure
+ * 
  * @author Sebastian Zamora
  * @author Johann Amaya
  * @version 1.0
@@ -20,10 +21,12 @@ public interface Item {
     /**
      * Let's se if the change in the interface
      */
-    default void change() {}
+    default void change() {
+    }
 
     /**
      * Let´s know what is the cell's shape;
+     * 
      * @return A square
      */
     default int shape() {
@@ -32,6 +35,7 @@ public interface Item {
 
     /**
      * Let´s know the cell's color.
+     * 
      * @return the cell's colo
      */
     default Color getColor() {
@@ -40,11 +44,13 @@ public interface Item {
 
     /**
      * Return the cell's state.
+     * 
      * @return if the cell is active or not.
      */
     default boolean isAlive() {
         return false;
     }
 
-    default void changeShape(){}
+    default void changeShape() {
+    }
 }

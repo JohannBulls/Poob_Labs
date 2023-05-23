@@ -7,15 +7,17 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 
 import javax.naming.AuthenticationException;
 import javax.swing.JOptionPane;
 
 /*No olviden adicionar la documentacion*/
-public class CellularAutomata {
+public class CellularAutomata implements Serializable {
     static private int LENGTH = 30;
     private Item[][] automata;
+
     /**
      * Constructor de la clase CellularAutomata. Crea una nueva
      * instancia de la clase y establece un arreglo bidimensional
@@ -69,12 +71,12 @@ public class CellularAutomata {
         Cell b007 = new Cell(this, 2, 2);
         Sociable agamenon = new Sociable(this, 1, 2);
         Sociable venus = new Sociable(this, 3, 2);
-        Teleport johann = new Teleport(this,15,15);
-        Teleport sebastian = new Teleport(this,29,29);
-        //Cancer nueva = new Cancer(this,20,20);
-        //Cancer nueva2 = new Cancer(this,0,20);
-        Heater uno = new Heater(this,0,0);
-        Heater dos = new Heater(this,29,29);
+        Teleport johann = new Teleport(this, 15, 15);
+        Teleport sebastian = new Teleport(this, 29, 29);
+        // Cancer nueva = new Cancer(this,20,20);
+        // Cancer nueva2 = new Cancer(this,0,20);
+        Heater uno = new Heater(this, 0, 0);
+        Heater dos = new Heater(this, 29, 29);
     }
 
     /**
@@ -103,78 +105,85 @@ public class CellularAutomata {
             }
         }
     }
-    
+
     /**
      * Let me erase a item
      */
-    public void eraseItem(int row,int column){
+    public void eraseItem(int row, int column) {
         automata[row][column] = null;
     }
 
     /**
      * Charge a file.
-     * @param archivo   the file to save
-     * @throws AutomataException    the method is in construction
+     * 
+     * @param archivo the file to save
+     * @throws AutomataException the method is in construction
      */
-    public void open00(File archivo) throws AutomataException{
-        throw new AutomataException(AutomataException.OPEN,archivo.getName());
+    public void open00(File archivo) throws AutomataException {
+        throw new AutomataException(AutomataException.OPEN, archivo.getName());
     }
 
     /**
      * Save a File as an object.
-     * @param archivo   the file to save
-     * @throws AutomataException    the method is in construction
+     * 
+     * @param archivo the file to save
+     * @throws AutomataException the method is in construction
      */
-    public void save00(File archivo) throws AutomataException{
-        throw new AutomataException(AutomataException.SAVE,archivo.getName());
+    public void save00(File archivo) throws AutomataException {
+        throw new AutomataException(AutomataException.SAVE, archivo.getName());
     }
 
     /**
      * Charge a File as an object.
-     * @param archivo   the file to save.
+     * 
+     * @param archivo the file to save.
      */
-    public void open(File archivo) throws AutomataException{
-        try{
+    public CellularAutomata open(File archivo) throws AutomataException {
+        try {
             ObjectInputStream texto = new ObjectInputStream(new FileInputStream(archivo.getName()));
-            CellularAutomata ac = (CellularAutomata) texto.readObject();
+            CellularAutomata ac= (CellularAutomata) texto.readObject();
             texto.close();
-        }catch(IOException e){
-            JOptionPane.showMessageDialog(null, e.getMessage(), "No encontro el archivo",JOptionPane.ERROR_MESSAGE);
-        }catch(ClassNotFoundException e){
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "No encontro el archivo", JOptionPane.ERROR_MESSAGE);
+        } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error en la clase", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     /**
      * Save a File as an object.
-     * @param archivo   the file to save
+     * 
+     * @param archivo the file to save
      */
-    public void save(File archivo) throws AutomataException{
-        try{
+    public void save(File archivo) throws AutomataException {
+        try {
+            CellularAutomata ac = this;
             ObjectOutputStream texto = new ObjectOutputStream(new FileOutputStream(archivo.getName()));
-            texto.writeObject(this);
+            texto.writeObject(ac);
             texto.close();
-        }catch(IOException e){
-            JOptionPane.showMessageDialog(null, e.getMessage(), "No se pudo guardar",JOptionPane.ERROR_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "No se pudo guardar", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     /**
      * Charge a File as an object.
-     * @param archivo   the file to save.
-     * @throws AutomataException    the method is in construction
+     * 
+     * @param archivo the file to save.
+     * @throws AutomataException the method is in construction
      */
-    public void importar(File archivo) throws AutomataException{
-        throw new AutomataException(AutomataException.IMPORT,archivo.getName());
+    public void importar(File archivo) throws AutomataException {
+        throw new AutomataException(AutomataException.IMPORT, archivo.getName());
     }
 
     /**
      * Save a File.
-     * @param archivo   the file to save
-     * @throws AutomataException    the method is in construction
+     * 
+     * @param archivo the file to save
+     * @throws AutomataException the method is in construction
      */
-    public void export(File archivo) throws AutomataException{
-        throw new AutomataException(AutomataException.EXPORT,archivo.getName());
+    public void export(File archivo) throws AutomataException {
+        throw new AutomataException(AutomataException.EXPORT, archivo.getName());
     }
     /*
      * public void ticTac() {
@@ -210,7 +219,7 @@ public class CellularAutomata {
      * }
      */
     /*
-    /**
+     * /**
      * Cuenta el número de células vivas en el vecindario de una
      * célula dada. Recorre las células vecinas y aumenta un
      * contador si una célula está viva. Retorna el número total
@@ -236,7 +245,5 @@ public class CellularAutomata {
      * return count;
      * }
      */
-
-    
 
 }
